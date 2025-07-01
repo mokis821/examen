@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Salón de Fiestas - Galería</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #8e44ad;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 10px;
+        }
+        .galeria img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .galeria img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Salón de Fiestas "Los papulinces"</h1>
+        <p>Galería de Imágenes</p>
+    </header>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const servicios = [
+            {
+                servicio: "Salón decorado",
+                costo: "$5,000 MXN",
+                telefono: "55-1234-5678"
+            },
+            {
+                servicio: "Mesa de dulces",
+                costo: "$1,200 MXN",
+                telefono: "55-1234-5678"
+            },
+            {
+                servicio: "Pista de baile",
+                costo: "$2,500 MXN",
+                telefono: "55-1234-5678"
+            },
+            {
+                servicio: "Decoración con globos",
+                costo: "$800 MXN",
+                telefono: "55-1234-5678"
+            },
+            {
+                servicio: "Fiesta infantil",
+                costo: "$3,000 MXN",
+                telefono: "55-1234-5678"
+            }
+        ];
+
+        const galeria = document.querySelector('.galeria');
+        const imgs = galeria.querySelectorAll('img');
+
+        // Crear tooltip
+        const tooltip = document.createElement('div');
+        tooltip.style.position = 'fixed';
+        tooltip.style.background = '#fff';
+        tooltip.style.color = '#333';
+        tooltip.style.padding = '10px 16px';
+        tooltip.style.borderRadius = '8px';
+        tooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.18)';
+        tooltip.style.pointerEvents = 'none';
+        tooltip.style.fontSize = '16px';
+        tooltip.style.zIndex = '1000';
+        tooltip.style.display = 'none';
+        document.body.appendChild(tooltip);
+
+        imgs.forEach((img, i) => {
+            img.addEventListener('mouseenter', (e) => {
+                tooltip.innerHTML = `<strong>Servicio:</strong> ${servicios[i].servicio}<br>
+                                     <strong>Costo:</strong> ${servicios[i].costo}<br>
+                                     <strong>Tel:</strong> ${servicios[i].telefono}`;
+                tooltip.style.display = 'block';
+            });
+            img.addEventListener('mousemove', (e) => {
+                tooltip.style.left = (e.clientX + 15) + 'px';
+                tooltip.style.top = (e.clientY + 15) + 'px';
+            });
+            img.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+            });
+        });
+    });
+    </script>
+    <section class="galeria">
+        <img src="153.webp" alt="Salón decorado">
+        <img src="2625004_16.webp"alt="Mesa de dulces">
+        <img src="pista-baile-holografica-patrones-personalizables_974629-315362.webp" alt="Pista de baile">
+        <img src="decoracion-con-globos-149084470.webp" alt="Decoración con globos">
+        <img src="mesadeniños.webp" alt="Fiesta infantil">
+    </section>
+</body>
+</html>
